@@ -47,14 +47,14 @@ router.get('/new/', function(req, res) {
 // IMPLEMENTAR AQUI
 router.post('/', function(req, res){
   console.log('aa');
-  db.query('INSERT INTO person(nome) VALUES ("' + req.body.name + '")',   function(err, result) { res.redirect('/people/'); } );
+  db.query('INSERT INTO person(nome) VALUES ("' + req.body.name + '")',   function(err, result) { res.redirect('/people/') } );
 });
 
 /* DELETE uma pessoa */
 // IMPLEMENTAR AQUI
 router.delete('/', function(req, res){
   console.log('aa');
-  db.query('DELETE FROM person WHERE id =' + req.body.id + ')',   function(err, result) { res.redirect('/people/'); } );
+  db.query('DELETE FROM person WHERE id =' + req.body.id + ')',   function(err, result) { res.redirect('/people/') } );
 });
 
 module.exports = router;
