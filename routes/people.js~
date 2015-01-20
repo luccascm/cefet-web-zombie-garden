@@ -3,6 +3,26 @@ var db = require('../db');
 
 var router = express.Router();
 
+/* POST registra uma nova pessoa */
+// IMPLEMENTAR AQUI
+router.post('/new', function(req, res){
+  console.log('aai');
+  db.query('INSERT INTO person (name) VALUES (' + db.escape(req.body.name) + ')',   function(err, result) { console.log('bbi'); res.redirect('/people/'); } );
+});
+
+/* DELETE uma pessoa */
+// IMPLEMENTAR AQUI
+console.log('registrou delete');
+router.delete('/:id', function(req, res){
+	console.log('aad');
+  db.query('DELETE FROM person WHERE id =' + db.escape(req.param.id),   
+		function(err, result) { 
+			console.log('bbd');
+			req.flash('success', 'teste');
+			res.redirect('/people/');
+	});
+});
+	
 /* GET lista de pessoas. */
 router.get('/', function(req, res, next) {
 
@@ -42,19 +62,5 @@ router.get('/new/', function(req, res) {
   res.render('newPerson');
 });
 
-
-/* POST registra uma nova pessoa */
-// IMPLEMENTAR AQUI
-router.post('/', function(req, res){
-  console.log('aa');
-  db.query('INSERT INTO person(nome) VALUES ("' + req.body.name + '")',   function(err, result) { console.log('bb'); res.redirect('/people/'); } );
-});
-
-/* DELETE uma pessoa */
-// IMPLEMENTAR AQUI
-router.delete('/', function(req, res){
-  console.log('aa');
-  db.query('DELETE FROM person WHERE id =' + req.body.id,   function(err, result) { console.log('bb'); res.redirect('/people/'); } );
-});
 
 module.exports = router;
